@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <title>Inregistrare animale</title>
+    <head class="centrat"> 
+        <link rel="stylesheet" type="text/css" href="inregistrareAnimale.css"/>
+        <style>
+            .focus{
+                border: 2px solid rgb(240, 42, 7);
+            }
+        </style>
+        <h1>Formular inregistrare animale</h1>
+    </head>
+    <body>
+        <div><p>Acest formular are ca scop inregistrarea animalelor</p></div>
+        <div class="formular" id="tabel1"><form>
+            Nume stapan: <br><input type="text" name="nume_stapan"/><br><br>
+            Telefon: <br><input type="text" name="telefon"/><br><br>
+            Nume animal: <br><input type="text" name="nume_animal"/><br><br>
+            Specie: <br><select class="focus" name="specie">
+                <option value="caine">Caine</option>
+                <option value="pisica">Pisica</option>
+                <option value="hamster">Hamster</option>
+                <option value="papagal">Papagal</option>
+                <option value="altele">Altele</option>
+            </select> 
+            <br><br>
+            Sexul animalului:<br><input type="radio" name="sex" value="masculin"/>Masculin
+            <input type="radio" name="sex" value="feminin"/>Feminin<br><br>  
+            Servicii dorite: <br><input type="checkbox" name="Vaccinare"/>Vaccinare
+            <input type="checkbox" name="Deparazitare"/>Deparazitare 
+            <input type="checkbox" name="Consultatie"/>Consultatie<br><br>   
+            Observatii:<br>
+            <textarea rows="4" cols="50" name="observatii">
+            </textarea><br><br>
+            <button type="submit">Trimite</button>
+            <button type="reset"> Reseteaza</button>
+
+        </form></div>
+    </body>
+
+</html>

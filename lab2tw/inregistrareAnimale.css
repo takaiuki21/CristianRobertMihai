@@ -1,0 +1,42 @@
+p{
+    text-align: center;
+}
+.formular{
+    border: 2px solid black;
+    padding: 10px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    background-color: lightyellow;
+
+
+}
+body{
+    background-color: lightblue;
+}
+
+h1{
+    text-align: center;
+    color: darkblue;
+}
+button[type="submit"]
+{
+    background-color: rgb(140, 140, 196);
+}
+button[type="reset"]
+{
+    background-color: rgb(243, 24, 177);
+   
+}
+button:hover{
+    opacity: 0.8;
+}
+input[type="text"], select, textarea{
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
