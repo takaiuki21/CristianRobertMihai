@@ -1,21 +1,29 @@
 <?php
 require 'db.php';
+// verific daca utilizatorul este logat
 if (!isset($_SESSION['user_id'])) { header("Location: login.php"); exit; }
 
 $mesaj = "";
+// verific daca formularul a fost trimis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = $_POST['data'];
     $ora = $_POST['ora'];
 
+    // Vverificarea 1: data rezervarii trebuie sa fie in viitor
     if (strtotime($data) < strtotime(date('Y-m-d'))) {
         $mesaj = "Eroare: Nu poți rezerva o dată din trecut!";
     } else {
+        // verificarea 2: numarul de rezervari la acea data si ora
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM rezervari WHERE data_rezervare = ? AND ora_rezervare = ?");
         $stmt->execute([$data, $ora]);
+        
+        // daca sunt deja 3 rezervari la acea data si ora, afisez eroare
         if ($stmt->fetchColumn() >= 3) {
             $mesaj = "Eroare: Această oră este complet ocupată!";
         } else {
+            // daca totul e ok, inserez rezervarea in baza de date
             $stmt = $pdo->prepare("INSERT INTO rezervari (user_id, nume, prenume, data_rezervare, ora_rezervare, nr_persoane) VALUES (?, ?, ?, ?, ?, ?)");
+            // trimit datele la interogare si le inserez in baza de date
             $stmt->execute([$_SESSION['user_id'], $_POST['nume'], $_POST['prenume'], $data, $ora, $_POST['persoane']]);
             $mesaj = "Rezervare confirmată!";
         }
@@ -37,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br><br>
         <h2>Rezervă o masă</h2>
         <?php if($mesaj) echo "<p>$mesaj</p>"; ?>
+        
         <form method="POST" action="rezervari.php">
             Nume:<br><input type="text" name="nume" required><br>
             Prenume:<br><input type="text" name="prenume" required><br>

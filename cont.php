@@ -1,9 +1,16 @@
 <?php
-require 'db.php';
+require 'db.php'; 
+
+// verifica daca utilizatorul este logat
 if (!isset($_SESSION['user_id'])) { header("Location: login.php"); exit; }
 
+// pregateste interogarea pentru a obtine rezervarile utilizatorului
 $stmt = $pdo->prepare("SELECT * FROM rezervari WHERE user_id = ?");
+
+// executa interogarea cu user_id din sesiune
 $stmt->execute([$_SESSION['user_id']]);
+
+// obtine toate rezervarile utilizatorului
 $rezervari_user = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
